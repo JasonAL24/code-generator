@@ -31,14 +31,14 @@ def generate_custom_code(format_string):
         random_digits = ''.join(random.choices(string.digits, k=count))
         result = result.replace(match.group(0), random_digits, 1)
     
-    # Replace {l:X} with X random uppercase letters
-    for match in re.finditer(r'\{l:(\d+)\}', format_string):
+    # Replace {u:X} with X random uppercase letters
+    for match in re.finditer(r'\{u:(\d+)\}', format_string):
         count = int(match.group(1))
         random_letters = ''.join(random.choices(string.ascii_uppercase, k=count))
         result = result.replace(match.group(0), random_letters, 1)
     
-    # Replace {s:X} with X random lowercase letters
-    for match in re.finditer(r'\{s:(\d+)\}', format_string):
+    # Replace {l:X} with X random lowercase letters
+    for match in re.finditer(r'\{l:(\d+)\}', format_string):
         count = int(match.group(1))
         random_letters = ''.join(random.choices(string.ascii_lowercase, k=count))
         result = result.replace(match.group(0), random_letters, 1)
@@ -64,9 +64,9 @@ if option == "CSV Codes":
         use_custom = st.checkbox("Use custom format")
         
         if use_custom:
-            st.info("Use {d} for digits, {l} for uppercase letters, {s} for lowercase letters")
-            custom_format = st.text_input("Custom format:", value="TVLK{d:5}{l:3}", 
-                                         help="Example: TVLK{d:5}{l:3} = TVLK12345ABC")
+            st.info("Use {d} for digits, {u} for uppercase letters, {l} for lowercase letters")
+            custom_format = st.text_input("Custom format:", value="TVLK{d:5}{u:3}", 
+                                         help="Example: TVLK{d:5}{u:3} = TVLK12345ABC")
         else:
             custom_format = None
     
